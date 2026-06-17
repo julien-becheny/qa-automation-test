@@ -1,0 +1,18 @@
+# Environnement Python
+env/
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Cache Browser Library / Playwright
+node_modules/
+.cache/
+
+# Sorties Robot Framework de travail (les rapports finaux sont commités à part dans results/)
+*.log
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

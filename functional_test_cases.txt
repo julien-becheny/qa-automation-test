@@ -1,0 +1,75 @@
+==============================================================================
+ PARTIE FONCTIONNELLE — CAS DE TEST
+ Site de démonstration : https://www.saucedemo.com
+==============================================================================
+
+------------------------------------------------------------------------------
+ CAS DE TEST 1 : Cohérence du montant total au récapitulatif de commande
+------------------------------------------------------------------------------
+ID            : CT-01
+Titre         : Vérification du calcul du total (sous-total + taxe) avant validation
+Priorité      : Haute
+Type          : Fonctionnel / Règle de calcul / Cas passant
+
+Préconditions :
+  - Le site https://www.saucedemo.com est accessible.
+  - L'utilisateur « standard_user » existe et n'est pas verrouillé.
+
+Données de test :
+  - Identifiant   : standard_user
+  - Mot de passe  : secret_sauce
+  - Produit 1     : Sauce Labs Backpack   ($29.99)
+  - Produit 2     : Sauce Labs Bike Light ($9.99)
+  - Livraison     : Julien / Becheny / 75001
+
+Étapes :
+  1. Ouvrir la page https://www.saucedemo.com et se connecter
+  2. Ajouter « Sauce Labs Backpack » et « Sauce Labs Bike Light » au panier
+  3. Ouvrir le panier puis cliquer sur « Checkout »
+  4. Renseigner les informations de livraison et cliquer sur « Continue »
+  5. Sur la page récapitulative (« Checkout: Overview »), relever :
+     - le sous-total (« Item total »)
+     - le montant de la taxe (« Tax »)
+     - le total (« Total »)
+
+Résultat attendu :
+  - Le sous-total est égal à la somme des prix des produits ($29.99 + $9.99 = $39.98).
+  - Le total affiché est égal à : sous-total + taxe (Item total + Tax = Total).
+  - Aucun écart de calcul n'est constaté entre les montants affichés.
+
+Scénario (Gherkin) :
+  Étant donné un panier contenant deux produits dont les prix sont connus
+  Quand l'utilisateur accède à la page récapitulative de la commande
+  Alors le sous-total est égal à la somme des prix des produits
+  Et le total est égal au sous-total augmenté de la taxe
+
+------------------------------------------------------------------------------
+ CAS DE TEST 2 : Connexion refusée avec un utilisateur verrouillé (négatif)
+------------------------------------------------------------------------------
+ID            : CT-02
+Titre         : Blocage de connexion pour un utilisateur verrouillé
+Priorité      : Moyenne
+Type          : Fonctionnel / Cas non passant
+
+Préconditions :
+  - Le site https://www.saucedemo.com est accessible.
+  - L'utilisateur « locked_out_user » est connu du système comme verrouillé.
+
+Données de test :
+  - Identifiant   : locked_out_user
+  - Mot de passe  : secret_sauce
+
+Étapes :
+  1. Ouvrir la page https://www.saucedemo.com
+  2. Saisir l'identifiant « locked_out_user » et le mot de passe « secret_sauce »
+  3. Valider la connexion
+
+Résultat attendu :
+  - Un message d'erreur « Sorry, this user has been locked out. » est affiché.
+  - L'utilisateur reste sur la page de connexion (pas d'accès à l'inventaire).
+
+Scénario (Gherkin) :
+  Étant donné un utilisateur dont le compte est verrouillé
+  Quand il tente de se connecter avec ses identifiants
+  Alors un message d'erreur de connexion est affiché
+  Et il reste sur la page de connexion

@@ -1,4 +1,4 @@
-# Test technique QA Automatisation — Robot Framework + Browser Library
+# QA Automatisation — Robot Framework + Browser Library
 
 Automatisation d'un parcours utilisateur web avec **Robot Framework** et la **Browser Library** (Playwright), organisée selon le **Page Object Model (POM)**.
 

@@ -11,6 +11,10 @@ node_modules/
 
 # Sorties Robot Framework de travail (les rapports finaux sont commités à part dans results/)
 *.log
+results/
+log.html
+report.html
+output.xml
 
 # OS / IDE
 .DS_Store

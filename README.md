@@ -11,7 +11,7 @@ Le parcours automatisé s'exécute sur le site de démonstration [saucedemo.com]
 Pour cloner, installer et exécuter en une fois :
 
 ```bash
-git clone https://github.com/mastafungus/qa-automation-test.git
+git clone https://github.com/julien-becheny/qa-automation-test.git
 cd qa-automation-test
 python -m venv env
 .\env\Scripts\Activate.ps1      # Windows (PowerShell) — macOS/Linux : source env/bin/activate
